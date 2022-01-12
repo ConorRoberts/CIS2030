@@ -1,0 +1,38 @@
+00008000 Starting Address
+Assembler used: EASy68K Editor/Assembler v5.16.01
+Created On: 10/14/2020 1:02:08 PM
+
+00000000                             1  *-----------------------------------------------------------
+00000000                             2  * Title      : Lab3b    
+00000000                             3  * Written by : Conor Roberts
+00000000                             4  * Date       : 14/10/2020
+00000000                             5  * Description: Examples of Define Constant (DC)
+00000000                             6  *-----------------------------------------------------------
+00000000                             7      
+00008000                             8          ORG    $8000        
+00008000  3039 00009000              9  START:  MOVE.W  A,D0        ;move word at A to D0
+00008006  D079 00009002             10          ADD.W   B,D0        ;add word at B to D0
+0000800C  33C0 00009004             11          MOVE.W  D0,C        ;store sum in D0 at C
+00008012                            12  
+00008012  FFFF FFFF                 13          SIMHALT             ; halt simulator
+00008016                            14  
+00008016                            15  
+00008016                            16  * Reserve storage for variables A, B, C;
+00009000                            17          ORG     $9000
+00009000= 000A                      18  A       DC.W    10          ;store 10 as a word
+00009002= 0014                      19  B       DC.W    20          ;store 20 as a word
+00009004                            20  C       DS.W    1           ;reserve 1 word in memory
+00009006                            21  
+00009006                            22          END    START        ; last line of source
+
+No errors detected
+No warnings generated
+
+
+SYMBOL TABLE INFORMATION
+Symbol-name         Value
+-------------------------
+A                   9000
+B                   9002
+C                   9004
+START               8000

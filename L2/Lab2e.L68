@@ -1,0 +1,36 @@
+00008000 Starting Address
+Assembler used: EASy68K Editor/Assembler v5.16.01
+Created On: 10/1/2020 12:26:02 PM
+
+00000000                             1  *-----------------------------------------------------------
+00000000                             2  * Title      : Lab2e 
+00000000                             3  * Written by : Conor Roberts
+00000000                             4  * Date       : 01/10/2020
+00000000                             5  * Description: Example of subtraction
+00000000                             6  *-----------------------------------------------------------
+00000000                             7  
+00000000                             8  * Put program instructions into memory here
+00000000                             9      
+00008000                            10          ORG     $8000
+00008000  2239 00009000             11  START   MOVE.L  COUNT,D1       ;load longword at COUNT into D1
+00008006  243C 00009000             12          MOVE.L  #COUNT,D2      ;load COUNT into D1  
+0000800C  9481                      13          SUB.L   D1,D2          ;subtract D1 from D2
+0000800E                            14  
+0000800E  FFFF FFFF                 15          SIMHALT                ;halt simulator
+00008012                            16  
+00008012                            17  * Put program variables and constants here
+00008012                            18  
+00009000                            19          ORG     $9000
+00009000= 00001234                  20  COUNT   DC.L    $1234          ;store 1234 in memory
+00009004                            21    
+00009004                            22          END     START          ;last line of source
+
+No errors detected
+No warnings generated
+
+
+SYMBOL TABLE INFORMATION
+Symbol-name         Value
+-------------------------
+COUNT               9000
+START               8000

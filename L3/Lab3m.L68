@@ -1,0 +1,42 @@
+00008000 Starting Address
+Assembler used: EASy68K Editor/Assembler v5.16.01
+Created On: 10/14/2020 2:52:39 PM
+
+00000000                             1  *-----------------------------------------------------------
+00000000                             2  * Title      : Lab3m    
+00000000                             3  * Written by : Conor Roberts 1056167
+00000000                             4  * Date       : 14/10/2020
+00000000                             5  * Description: X=Y/Z, where X,Y,Z are items in a C struct 
+00000000                             6  *-----------------------------------------------------------
+00000000  =00008000                  7  CODE    EQU     $8000              ;program starts at $8000
+00000000  =00009000                  8  DATA    EQU     $9000              ;start of data
+00000000                             9       
+00000000                            10       
+00008000                            11          ORG     CODE                
+00008000  41F9 00009000             12  START:  LEA     STRUCT,A0          ;A0 points to start of STRUCT
+00008006  2010                      13          MOVE.L  (A0),D0            ;D0 = dividend        
+00008008  81E8 0004                 14          DIVS    4(A0),D0           ;divide Y by Z
+0000800C  3140 0006                 15          MOVE.W  D0,6(A0)           ;save quotient in struct 
+00008010  4840                      16          SWAP    D0  
+00008012  3140 0008                 17          MOVE.W  D0,8(A0)           ;save remainder in struct
+00008016                            18  
+00008016  FFFF FFFF                 19          SIMHALT                    ;halt simulator
+0000801A                            20          
+00009000                            21          ORG     DATA
+00009000= 00000064                  22  STRUCT  DC.L    100                ;dividend (Y)
+00009004= 000F                      23          DC.W    15                 ;divsor (Z)      
+00009006                            24          DS.W    1                  ;quotient (X)
+00009008                            25          DS.W    1                  ;remainder (X)
+0000900A                            26          END    START        
+
+No errors detected
+No warnings generated
+
+
+SYMBOL TABLE INFORMATION
+Symbol-name         Value
+-------------------------
+CODE                8000
+DATA                9000
+START               8000
+STRUCT              9000

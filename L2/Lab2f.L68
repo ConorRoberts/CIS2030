@@ -1,0 +1,36 @@
+00008000 Starting Address
+Assembler used: EASy68K Editor/Assembler v5.16.01
+Created On: 10/1/2020 12:48:00 PM
+
+00000000                             1  *-----------------------------------------------------------
+00000000                             2  * Title      : Lab2f 
+00000000                             3  * Written by : Conor Roberts
+00000000                             4  * Date       : 01/10/2020
+00000000                             5  * Description: Adding numbers with different data sizes
+00000000                             6  *-----------------------------------------------------------
+00000000                             7  
+00000000                             8  * Put program instructions into memory here
+00000000                             9      
+00008000                            10          ORG     $8000
+00008000  1039 00009000             11  START   MOVE.B  BYTE,D0        ;load byte at BYTE into D0
+00008006  4880                      12          EXT.W   D0             ;sign extend byte to word
+00008008  D179 00009002             13          ADD.W   D0,WORD        ;add words and store sum at WORD
+0000800E  FFFF FFFF                 14          SIMHALT                ;halt simulator
+00008012                            15  
+00008012                            16  * Put program variables and constants here
+00008012                            17  
+00009000                            18          ORG     $9000
+00009000= FF                        19  BYTE    DC.B    -1             ;store -1 in memory
+00009002= 000D                      20  WORD    DC.W    13             ;store 13 in memory
+00009004                            21          END     START          ;last line of source
+
+No errors detected
+No warnings generated
+
+
+SYMBOL TABLE INFORMATION
+Symbol-name         Value
+-------------------------
+BYTE                9000
+START               8000
+WORD                9002

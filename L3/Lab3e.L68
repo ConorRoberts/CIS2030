@@ -1,0 +1,30 @@
+00009000 Starting Address
+Assembler used: EASy68K Editor/Assembler v5.16.01
+Created On: 10/14/2020 1:19:30 PM
+
+00000000                             1  *-----------------------------------------------------------
+00000000                             2  * Title      : Lab3e    
+00000000                             3  * Written by : Conor Roberts 1056167
+00000000                             4  * Date       : 14/10/2020
+00000000                             5  * Description: Memory Alignment
+00000000                             6  *-----------------------------------------------------------
+00000000                             7  
+00009000                             8          ORG     $9000
+00009000                             9  BYTE    DS.B    1               ;reserve 1 byte
+00009002= 0001 0002 0003 000E       10  LIST    DC.W    1,2,%11,$E      ;store a list of words
+0000900A= 41 42 43                  11  STRING  DC.B    'ABC'           ;store ASCII string
+0000900E                            12  LONG    DS.L    1               ;reserve 1 long word
+00009012                            13          
+00009012                            14          END     $9000           ;last line of source
+
+No errors detected
+No warnings generated
+
+
+SYMBOL TABLE INFORMATION
+Symbol-name         Value
+-------------------------
+BYTE                9000
+LIST                9002
+LONG                900E
+STRING              900A

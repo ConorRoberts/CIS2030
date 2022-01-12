@@ -1,0 +1,42 @@
+00008000 Starting Address
+Assembler used: EASy68K Editor/Assembler v5.16.01
+Created On: 10/14/2020 2:34:12 PM
+
+00000000                             1  *-----------------------------------------------------------
+00000000                             2  * Title      : Lab3k    
+00000000                             3  * Written by : Conor Roberts 1056167
+00000000                             4  * Date       : 14/10/2020
+00000000                             5  * Description: Post-Increment and Pre-Decrement Addressing
+00000000                             6  *-----------------------------------------------------------
+00000000  =00008000                  7  CODE    EQU     $8000              ;program starts at $8000
+00000000  =00009000                  8  DATA    EQU     $9000              ;start of data
+00000000                             9       
+00000000                            10       
+00008000                            11          ORG     CODE                
+00008000  41F9 00009000             12  START:  LEA     ARRAY,A0           ;A0 points to start of ARRAY
+00008006  43F9 00009004             13          LEA     ARRAY+LENGTH*2,A1  ;A1 points to end of ARRAY
+0000800C                            14          
+0000800C  3010                      15          MOVE.W  (A0),D0            ;D0 = array[0]        
+0000800E  30E1                      16          MOVE.W  -(A1),(A0)+        ;array[0] = array[1]
+00008010  3280                      17          MOVE.W  D0,(A1)            ;array[1] = D0 
+00008012                            18          
+00008012  FFFF FFFF                 19          SIMHALT                    ;halt simulator
+00008016                            20  
+00009000                            21          ORG     DATA
+00009000= 0001 0002                 22  ARRAY   DC.W    1,2                ;array[4] = {1,2}
+00009004  =00000002                 23  LENGTH  EQU     (*-ARRAY)/2        ;number of array items
+00009004                            24        
+00009004                            25          END    START        
+
+No errors detected
+No warnings generated
+
+
+SYMBOL TABLE INFORMATION
+Symbol-name         Value
+-------------------------
+ARRAY               9000
+CODE                8000
+DATA                9000
+LENGTH              2
+START               8000

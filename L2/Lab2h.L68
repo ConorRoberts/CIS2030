@@ -1,0 +1,35 @@
+00008000 Starting Address
+Assembler used: EASy68K Editor/Assembler v5.16.01
+Created On: 10/1/2020 1:11:57 PM
+
+00000000                             1  *-----------------------------------------------------------
+00000000                             2  * Title      : Lab2h 
+00000000                             3  * Written by : Conor Roberts
+00000000                             4  * Date       : 01/10/2020
+00000000                             5  * Description: multiplying signed and unsigned words
+00000000                             6  *-----------------------------------------------------------
+00000000                             7  
+00000000                             8  * Put program instructions into memory here
+00000000                             9      
+00008000                            10          ORG     $8000
+00008000  3039 00009000             11  START   MOVE.W  WORD,D0       ;load word at WORD1 into D0
+00008006  C1F9 00009000             12          MULS    WORD,D0       ;word x word to D0
+0000800C  3239 00009000             13          MOVE.W  WORD,D1       ;load word at WORD into D1
+00008012  C2F9 00009000             14          MULU    WORD,D1       ;word x word to D1        
+00008018  FFFF FFFF                 15          SIMHALT                ;halt simulator
+0000801C                            16  
+0000801C                            17  * Put program variables and constants here
+0000801C                            18  
+00009000                            19          ORG     $9000
+00009000= FFFF                      20  WORD    DC.W    -1             ;store -1 in memory
+00009002                            21          END     START          ;last line of source
+
+No errors detected
+No warnings generated
+
+
+SYMBOL TABLE INFORMATION
+Symbol-name         Value
+-------------------------
+START               8000
+WORD                9000

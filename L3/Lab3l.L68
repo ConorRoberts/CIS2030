@@ -1,0 +1,49 @@
+00008000 Starting Address
+Assembler used: EASy68K Editor/Assembler v5.16.01
+Created On: 10/14/2020 2:51:00 PM
+
+00000000                             1  *-----------------------------------------------------------
+00000000                             2  * Title      : Lab3l    
+00000000                             3  * Written by : Conor Roberts 1056167
+00000000                             4  * Date       : 14/10/2020
+00000000                             5  * Description: Post-Increment and Pre-Decrement Addressing
+00000000                             6  *-----------------------------------------------------------
+00000000  =00008000                  7  CODE    EQU     $8000              ;program starts at $8000
+00000000  =00009000                  8  DATA    EQU     $9000              ;start of data
+00000000                             9       
+00000000                            10       
+00008000                            11          ORG     CODE                
+00008000  41F9 00009000             12  START:  LEA     ARRAY,A0          
+00008006  43F9 00009004             13          LEA     ARRAY+LENGTH,A1
+0000800C  45F9 00009008             14          LEA     ARRAY+LENGTH*2,A2
+00008012  47F9 0000900C             15          LEA     ARRAY+LENGTH*3,A3 
+00008018                            16        
+00008018  2010                      17          MOVE.L  (A0),D0  
+0000801A  2211                      18          MOVE.L  (A1),D1  
+0000801C                            19        
+0000801C  20E3                      20          MOVE.L  -(A3),(A0)+       
+0000801E  22E2                      21          MOVE.L  -(A2),(A1)+
+00008020                            22          
+00008020  2680                      23          MOVE.L  D0,(A3)         
+00008022  2481                      24          MOVE.L  D1,(A2)
+00008024                            25          
+00008024  FFFF FFFF                 26          SIMHALT                    ;halt simulator
+00008028                            27  
+00009000                            28          ORG     DATA
+00009000= 00000001 00000002 ...     29  ARRAY   DC.L    1,2,3,4                ;array[4] = {1,2}
+00009010  =00000004                 30  LENGTH  EQU     (*-ARRAY)/4        ;number of array items
+00009010                            31        
+00009010                            32          END    START        
+
+No errors detected
+No warnings generated
+
+
+SYMBOL TABLE INFORMATION
+Symbol-name         Value
+-------------------------
+ARRAY               9000
+CODE                8000
+DATA                9000
+LENGTH              4
+START               8000

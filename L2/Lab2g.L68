@@ -1,0 +1,39 @@
+00008000 Starting Address
+Assembler used: EASy68K Editor/Assembler v5.16.01
+Created On: 10/1/2020 1:08:40 PM
+
+00000000                             1  *-----------------------------------------------------------
+00000000                             2  * Title      : Lab2g 
+00000000                             3  * Written by : Conor Roberts
+00000000                             4  * Date       : 01/10/2020
+00000000                             5  * Description: Division, sign-extension, and swapping
+00000000                             6  *-----------------------------------------------------------
+00000000                             7  
+00000000                             8  * Put program instructions into memory here
+00000000                             9      
+00008000                            10          ORG     $8000
+00008000  1039 00009000             11  START   MOVE.B  DIVIDEND,D0    ;load byte at DIVIDEND into D0
+00008006  48C0                      12          EXT.L   D0             ;sign extend word to longword
+00008008  81FC 000F                 13          DIVS    #15,D0         ;divide longword by 15  
+0000800C  4281                      14          CLR.L   D1             ;clear D1
+0000800E  3200                      15          MOVE.W  D0,D1          ;move quotient to D1
+00008010  4282                      16          CLR.L   D2             ;clear D2
+00008012  4840                      17          SWAP    D0             ;swap quotient and remainder
+00008014  3400                      18          MOVE.W  D0,D2          ;move result to D2
+00008016  FFFF FFFF                 19          SIMHALT                ;halt simulator
+0000801A                            20  
+0000801A                            21  * Put program variables and constants here
+0000801A                            22  
+00009000                            23            ORG     $9000
+00009000= 9C                        24  DIVIDEND  DC.B    -100           ;store -100 in memory
+00009001                            25            END     START          ;last line of source
+
+No errors detected
+No warnings generated
+
+
+SYMBOL TABLE INFORMATION
+Symbol-name         Value
+-------------------------
+DIVIDEND            9000
+START               8000

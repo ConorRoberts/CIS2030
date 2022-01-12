@@ -1,0 +1,40 @@
+00008000 Starting Address
+Assembler used: EASy68K Editor/Assembler v5.16.01
+Created On: 9/24/2020 12:28:28 PM
+
+00000000                             1  *-----------------------------------------------------------
+00000000                             2  * Title      : Lab1b 
+00000000                             3  * Written by : Conor Roberts
+00000000                             4  * Date       : 24/09/2020
+00000000                             5  * Description: Loads, Stores, and Arithmetic
+00000000                             6  *-----------------------------------------------------------
+00000000                             7  
+00000000                             8  * Put program instructions into memory here
+00000000                             9      
+00008000                            10          ORG      $8000
+00008000  1039 00009000             11  START   MOVE.B   NUM1,D0             ;load first byte
+00008006  1239 00009001             12          MOVE.B   NUM2,D1             ;load second byte
+0000800C  D200                      13          ADD.B    D0,D1               ;add bytes 
+0000800E  13C1 00009002             14          MOVE.B   D1,SUM              ;store sum        
+00008014  FFFF FFFF                 15          SIMHALT                      ;halt simulator
+00008018                            16  
+00008018                            17  * Put variables and constants into memory here
+00008018                            18  
+00009000                            19          ORG     $9000
+00009000= 0A                        20  NUM1    DC.B     10                  ;byte 1
+00009001= 34                        21  NUM2    DC.B     52                  ;byte 2
+00009002= 80                        22  SUM     DC.B    128                  ;byte 3
+00009003                            23  
+00009003                            24          END    START                 ;last line of source
+
+No errors detected
+No warnings generated
+
+
+SYMBOL TABLE INFORMATION
+Symbol-name         Value
+-------------------------
+NUM1                9000
+NUM2                9001
+START               8000
+SUM                 9002

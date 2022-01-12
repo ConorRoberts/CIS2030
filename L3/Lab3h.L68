@@ -1,0 +1,48 @@
+00008000 Starting Address
+Assembler used: EASy68K Editor/Assembler v5.16.01
+Created On: 10/14/2020 2:10:56 PM
+
+00000000                             1  *-----------------------------------------------------------
+00000000                             2  * Title      : Lab3h    
+00000000                             3  * Written by : Conor Roberts 1056167
+00000000                             4  * Date       : dd/mm/yyyy
+00000000                             5  * Description: Absolute Short/Long Addressing
+00000000                             6  *-----------------------------------------------------------
+00000000  =00008000                  7  CODE        EQU    $8000        ;program starts at $8000
+00000000                             8  
+00000000  =00006000                  9  LOCATION1   EQU    $00006000        
+00000000  =00009000                 10  LOCATION2   EQU    $00009000
+00000000  =FFFF9000                 11  LOCATION3   EQU    $FFFF9000
+00000000                            12  
+00000000                            13       
+00008000                            14          ORG     CODE                
+00008000  2038 6000                 15  START:  MOVE.L  LOCATION1,D0     ;move long word at LOCATION1 to D0
+00008004  2039 00009000             16          MOVE.L  LOCATION2,D0     ;move long word at LOCATION2 to D0
+0000800A  2038 9000                 17          MOVE.L  LOCATION3,D0     ;move long word at LOCATION3 to D0
+0000800E                            18       
+0000800E  FFFF FFFF                 19          SIMHALT                  ; halt simulator
+00008012                            20  
+00008012                            21  
+00008012                            22  * Initialize memory
+00008012                            23  
+00006000                            24          ORG     LOCATION1
+00006000= 00000001                  25          DC.L    1   
+00009000                            26          ORG     LOCATION2
+00009000= 00000002                  27          DC.L    2
+FFFF9000                            28          ORG     LOCATION3
+FFFF9000= 00000003                  29          DC.L    3   
+FFFF9004                            30  
+FFFF9004                            31          END    START        
+
+No errors detected
+No warnings generated
+
+
+SYMBOL TABLE INFORMATION
+Symbol-name         Value
+-------------------------
+CODE                8000
+LOCATION1           6000
+LOCATION2           9000
+LOCATION3           FFFF9000
+START               8000

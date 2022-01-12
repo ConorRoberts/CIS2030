@@ -1,0 +1,43 @@
+00008000 Starting Address
+Assembler used: EASy68K Editor/Assembler v5.16.01
+Created On: 10/14/2020 2:25:39 PM
+
+00000000                             1  *-----------------------------------------------------------
+00000000                             2  * Title      : Lab3j    
+00000000                             3  * Written by : Your name goes here
+00000000                             4  * Date       : dd/mm/yyyy
+00000000                             5  * Description: Adress Register Indirect Addressing 
+00000000                             6  *-----------------------------------------------------------
+00000000  =00008000                  7  CODE    EQU     $8000            ;program starts at $8000
+00000000  =00009000                  8  DATA    EQU     $9000            ;start of data
+00000000                             9       
+00000000                            10       
+00008000                            11          ORG     CODE                
+00008000  3039 00009000             12  START:  MOVE.W  NUM1,D0          ;move word at NUM1 in D0
+00008006  41F9 00009002             13          LEA     NUM2,A0          ;A0 pointer initialized with address of NUM2
+0000800C  227C 00009004             14          MOVEA.L #SUM,A1          ;A1 pointer initialized with address of SUM1  
+00008012  D050                      15          ADD.W   (A0),D0          ;value pointed at by A0 added to D0
+00008014  3280                      16          MOVE.W  D0,(A1)          ;D0 copied to location pointed to by A1
+00008016                            17                     
+00008016  FFFF FFFF                 18          SIMHALT                  ; halt simulator
+0000801A                            19  
+00009000                            20          ORG     DATA
+00009000= 0001                      21  NUM1    DC.W    1                ;store 1 as a word
+00009002= 0002                      22  NUM2    DC.W    2                ;store 2 as a word
+00009004                            23  SUM     DS.W    1                ;reserve one word for sum
+00009006                            24  
+00009006                            25          END    START        
+
+No errors detected
+No warnings generated
+
+
+SYMBOL TABLE INFORMATION
+Symbol-name         Value
+-------------------------
+CODE                8000
+DATA                9000
+NUM1                9000
+NUM2                9002
+START               8000
+SUM                 9004

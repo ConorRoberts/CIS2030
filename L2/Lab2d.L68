@@ -1,0 +1,38 @@
+00008000 Starting Address
+Assembler used: EASy68K Editor/Assembler v5.16.01
+Created On: 10/1/2020 12:20:32 PM
+
+00000000                             1  *-----------------------------------------------------------
+00000000                             2  * Title      : Lab2d 
+00000000                             3  * Written by : Conor Roberts
+00000000                             4  * Date       : 01/10/2020
+00000000                             5  * Description: Examples of addition instructions
+00000000                             6  *-----------------------------------------------------------
+00000000                             7  
+00000000                             8  * Put program instructions into memory here
+00000000                             9      
+00008000                            10          ORG     $8000
+00008000  1239 00009000             11  START   MOVE.B  ONE,D1         ;load byte at ONE into D1
+00008006  D239 00009001             12          ADD.B   TWO,D1         ;add byte at TWO to D1
+0000800C  0601 0010                 13          ADD.B   #$10,D1        ;add 16 to byte in D1
+00008010                            14  
+00008010  FFFF FFFF                 15          SIMHALT                ;halt simulator
+00008014                            16  
+00008014                            17  * Put program variables and constants here
+00008014                            18  
+00009000                            19          ORG     $9000
+00009000= 01                        20  ONE     DC.B    1               ;store 1 in memory
+00009001= 02                        21  TWO     DC.B    2               ;store 2 in memory
+00009002                            22    
+00009002                            23          END     START          ;last line of source
+
+No errors detected
+No warnings generated
+
+
+SYMBOL TABLE INFORMATION
+Symbol-name         Value
+-------------------------
+ONE                 9000
+START               8000
+TWO                 9001

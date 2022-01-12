@@ -1,0 +1,38 @@
+00008000 Starting Address
+Assembler used: EASy68K Editor/Assembler v5.16.01
+Created On: 10/1/2020 12:18:32 PM
+
+00000000                             1  *-----------------------------------------------------------
+00000000                             2  * Title      : Lab2c 
+00000000                             3  * Written by : Conor Roberts
+00000000                             4  * Date       : 01/10/2020
+00000000                             5  * Description: Example of MOVE instruction involving memory
+00000000                             6  *-----------------------------------------------------------
+00000000                             7  
+00000000                             8  * Put program instructions into memory here
+00000000                             9      
+00008000                            10          ORG     $8000
+00008000  2239 00009000             11  START   MOVE.L  NUM,D1         ;load longword into D1
+00008006  1401                      12          MOVE.B  D1,D2          ;copy from D1 to D2
+00008008  3601                      13          MOVE.W  D1,D3          ;copy from D1 to D3
+0000800A  2801                      14          MOVE.L  D1,D4          ;copy from D1 to D4
+0000800C  3A01                      15          MOVE    D1,D5          ;copy from D1 to D5 
+0000800E                            16  
+0000800E  FFFF FFFF                 17          SIMHALT                ;halt simulator
+00008012                            18  
+00008012                            19  * Put program variables and constants here
+00008012                            20  
+00009000                            21          ORG     $9000
+Line 22 ERROR: Immediate data exceeds 16 bits
+00009000= 5678                      22  NUM     DC.W    305419896      ;store 305419896 in memory
+00009002                            23          END     START          ;last line of source
+
+1 error detected
+No warnings generated
+
+
+SYMBOL TABLE INFORMATION
+Symbol-name         Value
+-------------------------
+NUM                 9000
+START               8000

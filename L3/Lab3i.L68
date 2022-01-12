@@ -1,0 +1,39 @@
+00008000 Starting Address
+Assembler used: EASy68K Editor/Assembler v5.16.01
+Created On: 10/14/2020 2:16:53 PM
+
+00000000                             1  *-----------------------------------------------------------
+00000000                             2  * Title      : Lab3i    
+00000000                             3  * Written by : Conor Roberts 1056167
+00000000                             4  * Date       : 14/10/2020
+00000000                             5  * Description: Immediate Addressing
+00000000                             6  *-----------------------------------------------------------
+00000000  =00008000                  7  CODE        EQU    $8000        ;program starts at $8000
+00000000  =00000064                  8  VALUE       EQU    100
+00000000                             9  
+00000000                            10       
+00008000                            11          ORG     CODE                
+00008000  203C 4A415953             12  START:  MOVE.L  #'JAYS',D0       ;move charcter into byte in D0
+00008006  103C 0064                 13          MOVE.B  #VALUE,D0        ;move 2-character string into word in D0
+0000800A  303C 0064                 14          MOVE.W  #VALUE,D0        ;move 4-character string intolong word in D0
+0000800E  7064                      15          MOVE.L  #VALUE,D0        ;move VALUE into byte in D0
+00008010  103C 0064                 16          MOVE.B  #$64,D0          ;move 0x64 into byte in D0
+00008014  103C 0064                 17          MOVE.B  #%1100100,D0     ;move 0b1100100 into byte in D0
+00008018  70FF                      18          MOVE.L  #$FFFFFFFF,D0    ;move 0xFFFFFFFF into longword in D0
+0000801A  70FF                      19          MOVEQ   #$FF,D0          ;move 0xFFFFFFFF into longword in D0
+0000801C  103C 00C8                 20          MOVE.B  #VALUE*2,D0      ;move 2 x VALUE into D0
+00008020                            21                      
+00008020  FFFF FFFF                 22          SIMHALT                  ; halt simulator
+00008024                            23  
+00008024                            24          END    START
+
+No errors detected
+No warnings generated
+
+
+SYMBOL TABLE INFORMATION
+Symbol-name         Value
+-------------------------
+CODE                8000
+START               8000
+VALUE               64

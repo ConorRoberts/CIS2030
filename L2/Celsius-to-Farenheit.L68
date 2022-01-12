@@ -1,0 +1,101 @@
+00008000 Starting Address
+Assembler used: EASy68K Editor/Assembler v5.16.01
+Created On: 10/1/2020 1:35:09 PM
+
+00000000                             1  *-----------------------------------------------------------
+00000000                             2  * Title      : Celsius-to-Farenheit
+00000000                             3  * Written by : Your name goes here
+00000000                             4  * Date       : dd/mm/yyyy
+00000000                             5  * Description: program desciption goes here
+00000000                             6  *-----------------------------------------------------------
+00000000                             7  
+00000000                             8  * Put program instructions into memory here
+00000000                             9  
+00008000                            10          ORG     $8000
+00008000                            11  START
+00008000                            12  
+00008000                            13  * Call function to read Celsius temperature from keyboard
+00008000                            14  * Resulting byte stored in memory at label CELSIUS
+00008000                            15  
+00008000  4EB9 00009002             16          JSR     READ_TEMP
+00008006                            17  
+00008006                            18  
+00008006                            19  * Put your code here for computing F = (C x 9)/5 + 32
+00008006                            20  * The final 32-bit result MUST be stored in D1
+00008006                            21  
+00008006  1439 00009000             22          MOVE.B CELSIUS,D2       ;load byte at CELSIUS into D2
+0000800C  4882                      23          EXT.W D2                 ;sign extend byte to word
+0000800E  C5FC 0009                 24          MULS #9,D2          ;F = 9 x CELSIUS
+00008012  85FC 0005                 25          DIVS #5,D2          ;F = 9 x CELSIUS/5
+00008016  0642 0020                 26          ADD.W #32,D2        ;F = 9 x CELSIUS/5 + 32
+0000801A  4201                      27          CLR.B D1                 ;clear all 32 bits in D1
+0000801C  3202                      28          MOVE.W D2,D1        ;move F to D1
+0000801E                            29  
+0000801E                            30  
+0000801E                            31  * Call function to display Farenheit temperature on screen
+0000801E                            32  * Function assumes that temperature is in D1
+0000801E                            33  
+0000801E  4EB9 00009044             34          JSR     DISPLAY_TEMP
+00008024                            35  
+00008024  FFFF FFFF                 36          SIMHALT                  ;halt simulator
+00008028                            37  
+00008028                            38  
+00008028                            39  * Put program variables and constants here
+00008028                            40  
+00009000                            41            ORG     $9000
+00009000= 0F                        42  CELSIUS   DC.B    15
+00009001                            43  
+00009001                            44  
+00009001                            45  
+00009001                            46  *-----------------------------------------------------------
+00009001                            47  * Subroutine : Read Temperature from Keyboard
+00009001                            48  * Description: Prompts user to enter temperature in Celsius
+00009001                            49  *              and stores input as a byte at label CELSIUS
+00009001                            50  * Registers:   Subroutine is transparent to calling code
+00009001                            51  *-----------------------------------------------------------
+00009001                            52  
+00009002  48E7 8040                 53  READ_TEMP     MOVEM.L  A1/D0,-(SP)       ;save working registers
+00009006  43F9 00009024             54                LEA      MSG1,A1           ;point to string
+0000900C  103C 000E                 55                MOVE.B   #14,D0            ;task 14 to display string without '\n'
+00009010  4E4F                      56                TRAP     #15               ;system calll
+00009012  103C 0004                 57                MOVE.B   #4,D0             ;task 4 to read number from keyboard
+00009016  4E4F                      58                TRAP     #15               ;system call
+00009018  13C1 00009000             59                MOVE.B   D1,CELSIUS        ;store number at CELSIUS
+0000901E  4CDF 0201                 60                MOVEM.L  (SP)+,A1/D0       ;restore working registers
+00009022  4E75                      61                RTS
+00009024                            62  
+00009024= 45 6E 74 65 72 20 ...     63  MSG1          DC.B    'Enter Temperature in Celsisus: ',0
+00009044                            64  
+00009044                            65  
+00009044                            66  *-----------------------------------------------------------
+00009044                            67  * Subroutine : Display Temperature
+00009044                            68  * Description: Displays farenheit temperature on screen
+00009044                            69  * Registers:   Entry - D0 contains temperature in Farenheit
+00009044                            70  *-----------------------------------------------------------
+00009044                            71  
+00009044  48E7 0040                 72  DISPLAY_TEMP  MOVEM.L  A1,-(SP)      ;save working register
+00009048  43F9 0000905E             73                LEA      MSG2,A1       ;point to string
+0000904E  103C 000E                 74                MOVE.B   #14,D0        ;task 14 to display string without '\n'
+00009052  4E4F                      75                TRAP     #15           ;system call
+00009054  103C 0003                 76                MOVE.B   #3,D0         ;task 3 to display number of keyboard
+00009058  4E4F                      77                TRAP     #15           ;system call
+0000905A  225F                      78                MOVE.L   (SP)+,A1      ;restore working register
+0000905C  4E75                      79                RTS
+0000905E                            80  
+0000905E= 54 65 6D 70 65 72 ...     81  MSG2          DC.B    'Temperature in Fahrenheit: ',0
+0000907A                            82  
+0000907A                            83                END     START          ;last line of source
+
+No errors detected
+No warnings generated
+
+
+SYMBOL TABLE INFORMATION
+Symbol-name         Value
+-------------------------
+CELSIUS             9000
+DISPLAY_TEMP        9044
+MSG1                9024
+MSG2                905E
+READ_TEMP           9002
+START               8000

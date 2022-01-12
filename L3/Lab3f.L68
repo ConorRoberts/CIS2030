@@ -1,0 +1,30 @@
+00000000 Starting Address
+Assembler used: EASy68K Editor/Assembler v5.16.01
+Created On: 10/14/2020 1:28:19 PM
+
+00000000                             1  *-----------------------------------------------------------
+00000000                             2  * Title      : Lab3f    
+00000000                             3  * Written by : Conor Roberts 1056167
+00000000                             4  * Date       : 14/10/2020
+00000000                             5  * Description: Absolute Long (32-bit) Addressing
+00000000                             6  *-----------------------------------------------------------
+00000000                             7       
+00000000  =00000019                  8  LENGTH EQU 25
+00000000  =00000011                  9  WIDTH EQU 17
+00000000  =000001A9                 10  AREA EQU LENGTH*WIDTH
+00000000                            11                     
+00000000                            12  START: 
+00000000                            13  
+00000000                            14          END    START        
+
+No errors detected
+No warnings generated
+
+
+SYMBOL TABLE INFORMATION
+Symbol-name         Value
+-------------------------
+AREA                1A9
+LENGTH              19
+START               0
+WIDTH               11

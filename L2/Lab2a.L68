@@ -1,0 +1,45 @@
+00008000 Starting Address
+Assembler used: EASy68K Editor/Assembler v5.16.01
+Created On: 10/1/2020 11:50:39 AM
+
+00000000                             1  *-----------------------------------------------------------
+00000000                             2  * Title      : Lab2a 
+00000000                             3  * Written by : Conor Roberts
+00000000                             4  * Date       : 01/10/2020
+00000000                             5  * Description: Examples of MOVE instructions
+00000000                             6  *-----------------------------------------------------------
+00000000                             7  
+00000000                             8  * Put program instructions into memory here
+00000000                             9      
+00008000                            10          ORG     $8000
+00008000  103C 000E                 11  START   MOVE.B  #14,D0          ;task 13 (display string without '\n')
+00008004  43F9 00009000             12          LEA     MSG,A1          ;point to string
+0000800A  4E4F                      13          TRAP    #15             ;system call
+0000800C                            14  
+0000800C  103C 0004                 15          MOVE.B  #4,D0           ;task 4 (read number from keyboard into D1)
+00008010  4E4F                      16          TRAP    #15             ;system call
+00008012                            17     
+00008012  1401                      18          MOVE.B   D1,D2          ;copy from D1 to D2
+00008014  3601                      19          MOVE.W   D1,D3          ;copy from D1 to D3
+00008016  2801                      20          MOVE.L   D1,D4          ;copy from D1 to D4
+00008018  3A01                      21          MOVE     D1,D5          ;copy from D1 to D5 
+0000801A                            22  
+0000801A  FFFF FFFF                 23          SIMHALT                 ;halt simulator
+0000801E                            24  
+0000801E                            25  
+0000801E                            26  * Put variables and constants into memory here
+0000801E                            27  
+00009000                            28          ORG     $9000                           ;data      
+00009000= 45 6E 74 65 72 20 ...     29  MSG     DC.B    'Enter a decimal number: ',0    ;null terminated string
+00009019                            30  
+00009019                            31          END    START                            ;last line of source
+
+No errors detected
+No warnings generated
+
+
+SYMBOL TABLE INFORMATION
+Symbol-name         Value
+-------------------------
+MSG                 9000
+START               8000

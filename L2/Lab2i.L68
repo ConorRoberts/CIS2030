@@ -1,0 +1,38 @@
+00008000 Starting Address
+Assembler used: EASy68K Editor/Assembler v5.16.01
+Created On: 10/1/2020 1:28:04 PM
+
+00000000                             1  *-----------------------------------------------------------
+00000000                             2  * Title      : Lab2i 
+00000000                             3  * Written by : Conor Roberts
+00000000                             4  * Date       : 01/10/2020
+00000000                             5  * Description: Add three 8-bit numbers
+00000000                             6  *-----------------------------------------------------------
+00000000                             7  
+00000000                             8  * Put program instructions into memory here
+00000000                             9      
+00008000                            10          ORG     $8000
+00008000  3039 00009000             11  START   MOVE.W  NUM1,D0       ;load byte at NUM1 into D0
+00008006  D039 00009001             12          ADD.B   NUM2,D0       ;now add byte at NUM2
+0000800C  D039 00009002             13          ADD.B   NUM3,D0       ;now add byte at NUM3
+00008012  FFFF FFFF                 14          SIMHALT               ;halt simulator
+00008016                            15  
+00008016                            16  * Put program variables and constants here
+00008016                            17  
+00009000                            18          ORG     $9000
+00009000= 64                        19  NUM1    DC.B    100            ;store 100 in memory
+00009001= 14                        20  NUM2    DC.B    20             ;store 20 in memory
+00009002= 96                        21  NUM3    DC.B    150            ;store 150 in memory
+00009003                            22          END     START          ;last line of source
+
+No errors detected
+No warnings generated
+
+
+SYMBOL TABLE INFORMATION
+Symbol-name         Value
+-------------------------
+NUM1                9000
+NUM2                9001
+NUM3                9002
+START               8000

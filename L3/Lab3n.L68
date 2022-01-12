@@ -1,0 +1,91 @@
+00008000 Starting Address
+Assembler used: EASy68K Editor/Assembler v5.16.01
+Created On: 10/14/2020 3:26:53 PM
+
+00000000                             1  *-----------------------------------------------------------
+00000000                             2  * Title      : Lab3n    
+00000000                             3  * Written by : Conor Roberts 1056167
+00000000                             4  * Date       : 14/10/2020
+00000000                             5  * Description: Indirect with index and displacement 
+00000000                             6  *-----------------------------------------------------------
+00000000  =00008000                  7  CODE    EQU     $8000              ;program starts at $8000
+00000000  =00009000                  8  DATA    EQU     $9000              ;start of data
+00000000  =00000004                  9  NCOLS   EQU     4                  ;number of columns in matrix     
+00000000                            10       
+00008000                            11          ORG     CODE      
+00008000                            12  
+00008000                            13  * Prompt user to enter row number (0-3)
+00008000                            14  
+00008000  43F9 00009040             15  START:  LEA     MSG1,A1            ;A1 points to MSG1
+00008006  103C 000E                 16          MOVE.B  #14,D0             ;display string
+0000800A  4E4F                      17          TRAP    #15                ;system call
+0000800C  103C 0004                 18          MOVE.B  #4,D0              ;read row number from keyboard into D1
+00008010  4E4F                      19          TRAP    #15                ;system call
+00008012  2401                      20          MOVE.L  D1,D2              ;save row number
+00008014                            21  
+00008014                            22  
+00008014                            23  * Prompt user to enter column number (0-3)
+00008014                            24          
+00008014  43F9 00009052             25          LEA     MSG2,A1            ;A0 points to MSG1
+0000801A  103C 000E                 26          MOVE.B  #14,D0             ;display string
+0000801E  4E4F                      27          TRAP    #15                ;system call
+00008020  103C 0004                 28          MOVE.B  #4,D0              ;read column number from keyboard into D1
+00008024  4E4F                      29          TRAP    #15                ;system call
+00008026  2601                      30          MOVE.L  D1,D3
+00008028                            31  
+00008028                            32          
+00008028                            33  * Load array element at matrix[row][column]
+00008028                            34  
+00008028  4244                      35          CLR     D4        
+0000802A  41F9 00009000             36          LEA     MATRIX,A0          ;A0 points to base of array
+00008030  C4FC 0010                 37          MULU    #NCOLS*4,D2          ;compute row x NCOLS
+00008034  C6FC 0004                 38          MULU    #4,D3
+00008038  D682                      39          ADD.L   D2,D3              ;add column offset 
+0000803A  2830 3800                 40          MOVE.L  0(A0,D3.L),D4      ;load array element
+0000803E                            41  
+0000803E                            42          
+0000803E                            43  * Display array element on console
+0000803E                            44  
+0000803E  4281                      45          CLR.L   D1                 ;clear D1
+00008040  1204                      46          MOVE.B  D4,D1              ;move array element to D1
+00008042  43F9 00009067             47          LEA     MSG3,A1            ;A0 points to MSG1
+00008048  103C 000E                 48          MOVE.B  #14,D0             ;display string
+0000804C  4E4F                      49          TRAP    #15                ;system call
+0000804E  103C 0003                 50          MOVE.B  #3,D0              ;display array element
+00008052  4E4F                      51          TRAP    #15                ;system call
+00008054                            52          
+00008054  FFFF FFFF                 53          SIMHALT                    ;halt simulator
+00008058                            54       
+00008058                            55       
+00008058                            56  * Statically allocate 4 x 4 matrix   
+00008058                            57       
+00009000                            58          ORG     DATA
+00009000= 00000000 00000001 ...     59  MATRIX  DC.L    0,1,2,3            ;store 2-dimensional array
+00009010= 00000004 00000005 ...     60          DC.L    4,5,6,7
+00009020= 00000008 00000009 ...     61          DC.L    8,9,10,11
+00009030= 0000000C 0000000D ...     62          DC.L    12,13,14,15
+00009040                            63  
+00009040                            64  
+00009040                            65  * Messages to display on console
+00009040                            66  
+00009040= 45 6E 74 65 72 20 ...     67  MSG1    DC.B    'Enter row (0-3): ',0
+00009052= 45 6E 74 65 72 20 ...     68  MSG2    DC.B    'Enter column (0-3): ',0
+00009067= 41 72 72 61 79 20 ...     69  MSG3    DC.B    'Array Element: ',0
+00009077                            70          
+00009077                            71          END    START        
+
+No errors detected
+No warnings generated
+
+
+SYMBOL TABLE INFORMATION
+Symbol-name         Value
+-------------------------
+CODE                8000
+DATA                9000
+MATRIX              9000
+MSG1                9040
+MSG2                9052
+MSG3                9067
+NCOLS               4
+START               8000
